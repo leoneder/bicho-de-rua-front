@@ -1,13 +1,5 @@
-import React from 'react';
-import ReactDOM from 'react-dom/client';
-import './index.css';
-import 'bootstrap/dist/css/bootstrap.min.css';
-import { Button, Navbar } from 'react-bootstrap';
-import GridCards from './ui/components/cards/GridCards.js';
-import Nav1 from './ui/components/NavBar';
-import InputForm from './ui/components/InputForm';
-import NovoBicho from './ui/components/NovoBicho';
-
+import * as React from 'react';
+import Button from '@mui/material/Button';
 import TextField from '@mui/material/TextField';
 import Dialog from '@mui/material/Dialog';
 import DialogActions from '@mui/material/DialogActions';
@@ -15,31 +7,24 @@ import DialogContent from '@mui/material/DialogContent';
 import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
 
-var setBichoSelecionado=null;
-const root = ReactDOM.createRoot(document.getElementById('root'));
-console.log("leo")
-
-const handleClickOpen = () => {
-  // eslint-disable-next-line react-hooks/rules-of-hooks
+export default function NovoBicho(props) {
   const [open, setOpen] = React.useState(true);
-  setBichoSelecionado=1;
-  setOpen(true);
-};
-
-const handleClose = () => {
-
-};
-
-
-
-root.render(
-<div>
   
-  <Nav1 ></Nav1>
-  <button onClick={() => {setBichoSelecionado=1}}>Adicionar novo bicho</button>
-  <GridCards title="leonardo"></GridCards>
+  const handleClickOpen = () => {
+    setOpen(true);
+  };
 
-  <Dialog open={setBichoSelecionado!==null} onClose={handleClose}>
+  const handleClose = () => {
+    setOpen(false);
+  };
+
+  return (
+    <div>
+      <Button variant="outlined" onClick={handleClickOpen} onOpen={handleClickOpen}>
+        Open form dialog
+      </Button>
+    
+      <Dialog open={open} onClose={handleClose}>
         <DialogTitle>Subscribe</DialogTitle>
         <DialogContent>
           <DialogContentText>
@@ -61,5 +46,6 @@ root.render(
           <Button onClick={handleClose}>Subscribe</Button>
         </DialogActions>
       </Dialog>
-  </div>    
-);
+    </div>
+  );
+}
